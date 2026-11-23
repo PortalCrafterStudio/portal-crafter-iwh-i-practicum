@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body, * {
     font-family: 'Roboto', sans-serif;
@@ -63,7 +63,7 @@ label {
 }
 
 input[type="submit"] {
-    background-color: #ff7a59;
+    background-color: #c2410c;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -73,7 +73,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #e8613f;
+    background-color: #9a3412;
 }
 
 /* Practicum pages */
@@ -96,7 +96,7 @@ input[type="submit"]:hover {
 
 .button {
     display: inline-block;
-    background-color: #ff7a59;
+    background-color: #c2410c;
     color: #fff;
     text-decoration: none;
     border-radius: 6px;
@@ -104,7 +104,7 @@ input[type="submit"]:hover {
 }
 
 .button:hover {
-    background-color: #e8613f;
+    background-color: #9a3412;
 }
 
 .back-link {
