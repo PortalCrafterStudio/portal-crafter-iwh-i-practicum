@@ -12,13 +12,30 @@ app.use(express.json());
 // * The token is read from a local .env file (gitignored). See .env.example.
 const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
 
+// * Custom object used in this practicum: Plants.
+// * CUSTOM_OBJECT_TYPE can be set in .env to point the app at another custom object.
+const CUSTOM_OBJECT_TYPE = process.env.CUSTOM_OBJECT_TYPE || 'p_plants';
+const PLANT_PROPERTIES = ['name', 'species', 'sunlight', 'watering_frequency_days'];
+const SUNLIGHT_OPTIONS = [
+    { value: 'full_sun', label: 'Full sun' },
+    { value: 'bright_indirect', label: 'Bright, indirect light' },
+    { value: 'partial_shade', label: 'Partial shade' },
+    { value: 'low_light', label: 'Low light' }
+];
+const FORM_TITLE = 'Update Custom Object Form | Integrating With HubSpot I Practicum';
+
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 // * Code for Route 1 goes here
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
-// * Code for Route 2 goes here
+app.get('/update-cobj', (req, res) => {
+    res.render('updates', {
+        title: FORM_TITLE,
+        sunlightOptions: SUNLIGHT_OPTIONS
+    });
+});
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
