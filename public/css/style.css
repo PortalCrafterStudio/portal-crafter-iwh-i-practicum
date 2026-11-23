@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body, * {
     font-family: 'Roboto', sans-serif;
@@ -40,19 +40,112 @@ h1 {
     box-shadow: 3px 2px 6px lightgrey;
 }
 
-label, input {
+label, input, select {
     margin-top: 5px;
     display: block;
     font-size: inherit;
 }
 
-input[type="text"] {
-    padding: .25rem;
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    max-width: 420px;
+    padding: .375rem .5rem;
+    border: solid 1px #b8c4ce;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+label {
+    margin-top: 1rem;
+    font-weight: bold;
 }
 
 input[type="submit"] {
-    background-color: lightgrey;
+    background-color: #c2410c;
+    color: #fff;
     border: none;
-    padding: .375rem 1rem;
-    margin-top: 10px;
+    border-radius: 6px;
+    padding: .5rem 1.25rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #9a3412;
+}
+
+/* Practicum pages */
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.container h1 {
+    margin: 1.5rem 0 .5rem;
+}
+
+.intro,
+.form-intro {
+    color: #516f90;
+    margin-bottom: 1.5rem;
+}
+
+.button {
+    display: inline-block;
+    background-color: #c2410c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: .5rem 1.25rem;
+}
+
+.button:hover {
+    background-color: #9a3412;
+}
+
+.back-link {
+    color: #0091ae;
+}
+
+.error {
+    background-color: #fde8e4;
+    color: #b0331c;
+    border-radius: 6px;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: solid 1px lightgrey;
+}
+
+th,
+td {
+    text-align: left;
+    padding: .75rem 1rem;
+    border-bottom: solid 1px lightgrey;
+}
+
+th {
+    background-color: #f5f8fa;
+    color: #33475b;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+td.empty {
+    text-align: center;
+    color: #516f90;
 }

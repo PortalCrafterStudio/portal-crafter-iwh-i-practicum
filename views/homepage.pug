@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    a.button(href="/update-cobj") Add to this table
+
+    h1 Plants
+    p.intro Plant records stored in a HubSpot custom object, read with the CRM API.
+
+    if error
+        p.error= error
+
+    .table-wrapper
+        table
+            thead
+                tr
+                    th Name
+                    th Species
+                    th Sunlight
+                    th Water every (days)
+            tbody
+                each plant in plants
+                    tr
+                        td= plant.properties.name
+                        td= plant.properties.species
+                        td= sunlightLabels[plant.properties.sunlight] || plant.properties.sunlight
+                        td= plant.properties.watering_frequency_days
+                else
+                    tr
+                        td.empty(colspan="4") No plants yet. Use "Add to this table" to create the first one.

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    a.back-link(href="/") Return to the homepage
+
+    .form-wrapper
+        h1 Add a plant
+        p.form-intro Fill in the form to create a new Plant record in HubSpot.
+
+        if error
+            p.error= error
+
+        form(method="POST", action="/update-cobj")
+            label(for="name") Name
+            input#name(type="text", name="name", required, value=values && values.name)
+
+            label(for="species") Species
+            input#species(type="text", name="species", placeholder="e.g. Monstera deliciosa", value=values && values.species)
+
+            label(for="sunlight") Sunlight
+            select#sunlight(name="sunlight")
+                each option in sunlightOptions
+                    option(value=option.value, selected=values && values.sunlight === option.value)= option.label
+
+            label(for="watering_frequency_days") Water every (days)
+            input#watering_frequency_days(type="number", name="watering_frequency_days", min="1", step="1", value=values && values.watering_frequency_days)
+
+            input(type="submit", value="Create plant")
