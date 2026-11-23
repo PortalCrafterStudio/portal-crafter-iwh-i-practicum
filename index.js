@@ -24,6 +24,11 @@ const SUNLIGHT_OPTIONS = [
 ];
 const FORM_TITLE = 'Update Custom Object Form | Integrating With HubSpot I Practicum';
 
+const hubspotHeaders = () => ({
+    Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+    'Content-Type': 'application/json'
+});
+
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 // * Code for Route 1 goes here
@@ -39,7 +44,42 @@ app.get('/update-cobj', (req, res) => {
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
-// * Code for Route 3 goes here
+app.post('/update-cobj', async (req, res) => {
+    const { name, species, sunlight, watering_frequency_days } = req.body;
+
+    if (!name || !name.trim()) {
+        return res.status(400).render('updates', {
+            title: FORM_TITLE,
+            sunlightOptions: SUNLIGHT_OPTIONS,
+            values: req.body,
+            error: 'Name is required.'
+        });
+    }
+
+    const newPlant = {
+        properties: {
+            name: name.trim(),
+            species: (species || '').trim(),
+            sunlight,
+            watering_frequency_days
+        }
+    };
+
+    const createPlant = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}`;
+
+    try {
+        await axios.post(createPlant, newPlant, { headers: hubspotHeaders() });
+        res.redirect('/');
+    } catch (error) {
+        console.error(error.response ? error.response.data : error.message);
+        res.status(500).render('updates', {
+            title: FORM_TITLE,
+            sunlightOptions: SUNLIGHT_OPTIONS,
+            values: req.body,
+            error: 'HubSpot could not create the record. Check the server log and try again.'
+        });
+    }
+});
 
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 
