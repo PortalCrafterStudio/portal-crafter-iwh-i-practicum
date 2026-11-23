@@ -31,7 +31,35 @@ const hubspotHeaders = () => ({
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
-// * Code for Route 1 goes here
+const sunlightLabels = Object.fromEntries(SUNLIGHT_OPTIONS.map(option => [option.value, option.label]));
+
+app.get('/', async (req, res) => {
+    const plantsUrl = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}`;
+    const plants = [];
+    let after;
+
+    try {
+        // Page through every record so the table is never cut off at 100 rows.
+        do {
+            const resp = await axios.get(plantsUrl, {
+                headers: hubspotHeaders(),
+                params: { properties: PLANT_PROPERTIES.join(','), limit: 100, after }
+            });
+            plants.push(...resp.data.results);
+            after = resp.data.paging && resp.data.paging.next ? resp.data.paging.next.after : undefined;
+        } while (after);
+
+        res.render('homepage', { title: 'Plants | Integrating With HubSpot I Practicum', plants, sunlightLabels });
+    } catch (error) {
+        console.error(error.response ? error.response.data : error.message);
+        res.status(500).render('homepage', {
+            title: 'Plants | Integrating With HubSpot I Practicum',
+            plants: [],
+            sunlightLabels,
+            error: 'Could not load plants from HubSpot. Check the server log.'
+        });
+    }
+});
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
