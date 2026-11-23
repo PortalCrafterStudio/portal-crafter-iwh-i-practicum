@@ -4,7 +4,23 @@ This repository is for the Integrating With HubSpot I: Foundations course. This 
 
 To read the full directions, please go to the [practicum instructions](https://app.hubspot.com/academy/l/tracks/1092124/1093824/5493?language=en).
 
-**Put your HubSpot developer test account custom objects URL link here:** https://app.hubspot.com/contacts/l/objects/${custom-obj-number}/views/all/list
+**Put your HubSpot developer test account custom objects URL link here:** https://app.hubspot.com/contacts/248106732/objects/2-272336767/views/all/list
+
+## My practicum: Plants
+
+The custom object is **Plants** (`2-272336767`) in developer test account `248106732`. It has four custom properties: **Name** (string, required), **Species** (string), **Sunlight** (dropdown) and **Watering frequency (days)** (number), and it is associated with Contacts.
+
+### Run it locally
+1. `npm install`
+2. Copy `.env.example` to `.env` and set `PRIVATE_APP_ACCESS` to the private app access token. `.env` is gitignored, so the token never goes into the repo.
+3. `node index.js`, then open http://localhost:3000
+
+### Routes
+- `GET /` reads every Plant record from the CRM API and shows them in a table, with an "Add to this table" link.
+- `GET /update-cobj` renders the `updates` form for a new Plant.
+- `POST /update-cobj` creates the Plant record in HubSpot, then redirects to the homepage.
+
+`scripts/setup-plants.js` is the one-time script that created the custom object schema, the sample records and their contact associations.
 
 ___
 ## Tips:
