@@ -14,7 +14,7 @@ const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
 
 // * Custom object used in this practicum: Plants.
 // * CUSTOM_OBJECT_TYPE can be set in .env to point the app at another custom object.
-const CUSTOM_OBJECT_TYPE = process.env.CUSTOM_OBJECT_TYPE || 'p_plants';
+const CUSTOM_OBJECT_TYPE = process.env.CUSTOM_OBJECT_TYPE || '2-272336767';
 const PLANT_PROPERTIES = ['name', 'species', 'sunlight', 'watering_frequency_days'];
 const SUNLIGHT_OPTIONS = [
     { value: 'full_sun', label: 'Full sun' },
